@@ -50,3 +50,6 @@ You can now start adding functionality to your action. To learn more about worki
 
 You can also try it out on a Google Home, as long as it is registered with your account.
 Just say "Talk To {Your Invocation Name}" to use it.
+
+If you want to try our logging and monitoring dashboard, just go [here](https://bespoken.tools/dashboard) and follow the instructions.
+Once you get setup (less than 5 minutes), you will have instant insight into your actions.
