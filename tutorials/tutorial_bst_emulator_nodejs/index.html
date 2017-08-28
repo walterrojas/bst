@@ -746,12 +746,12 @@ afterEach(function(done) {
 });
 </code></pre>
 
-<p>The beforeEach block initializes the <a href="http://docs.bespoken.tools/en/latest/api/classes/lambdaserver.html">LambdaServer</a> 
-and the <a href="http://docs.bespoken.tools/en/latest/api/classes/bstalexa.html">BSTAlexa emulator</a>.</p>
+<p>The beforeEach block initializes the <a href="../../api/classes/lambdaserver.html">LambdaServer</a>
+and the <a href="../../api/classes/bstalexa.html">BSTAlexa emulator</a>.</p>
 <p>The first parameter to the LambdaServer tells it the location of the Lambda file to be run.
 It automatically wraps the Lambda in a service, and exposes it on the port supplied in the second argument.</p>
 <p>The last parameter indicates it should be in verbose mode - this causes requests and responses from the skill to be printed to the console.</p>
-<p>The <a href="http://docs.bespoken.tools/en/latest/api/classes/bstalexa.html#start">BSTAlexa start call</a> takes the URL of the Lambda server as its first parameter (it begins listening).<br />
+<p>The <a href="../../api/classes/bstalexa.html#start">BSTAlexa start call</a> takes the URL of the Lambda server as its first parameter (it begins listening).
 <em>Note that if you are not using Lambdas but a "Plain Old HTTP Service" you can skip the server start call and just point it at a server here.</em></p>
 <p>Additionally, it takes the location of the Intent Schema and Utterances in the second and third parameters. 
 These are not required and will default to './speechAssets/IntentSchema.json' and './speechAssets/SampleUtterances.txt' respectively.</p>
@@ -814,12 +814,12 @@ These are not required and will default to './speechAssets/IntentSchema.json' an
 });
 </code></pre>
 
-<p>This test uses the <a href="http://docs.bespoken.tools/en/latest/api/classes/bstalexa.html#playbackfinished">BSTAlexa#playbackFinished() call</a> 
+<p>This test uses the <a href="../../api/classes/bstalexa.html#playbackfinished">BSTAlexa#playbackFinished() call</a>
 to emulate the audio playing to completion on the device.  </p>
-<p>The Alexa service first calls <a href="http://docs.bespoken.tools/en/latest/api/classes/bstalexa.html#playbacknearlyfinished">BSTAlexa#playbackNearlyFinished()</a>. 
+<p>The Alexa service first calls <a href="../../api/classes/bstalexa.html#playbacknearlyfinished">BSTAlexa#playbackNearlyFinished()</a>.
 This request is triggered by the Alexa service when a track is almost done playing, and is frequently used by skills to enqueue the next AudioItem in the queue for playback on the device.</p>
 <p>The Alexa service then sends a 'AudioPlayer.PlaybackFinished' request to the skill, which we expect to then trigger the playback of the next track in the queue.  </p>
-<p>We also use the <a href="http://docs.bespoken.tools/en/latest/api/classes/bstalexa.html#once">BSTAlexa#once() listener</a> - this allows us to listen for specific events occurring within the Alexa emulator. 
+<p>We also use the <a href="../../api/classes/bstalexa.html#once">BSTAlexa#once() listener</a> - this allows us to listen for specific events occurring within the Alexa emulator.
 In this case, we want to confirm that the next track was queued correctly and has begun playing.</p>
 <p>We use the once call to indicate we only want to receive this event the first time it happens. This is useful for watching on events like PlaybackStarted, which are likely to happen many times in the course of an interaction.</p>
 <p>The events that can be listened for are listed <a href="../../api/classes/bstalexaevents.html">here</a>.</p>
