@@ -1,0 +1,929 @@
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Tutorial - Alexa Skill Emulator">
+      
+      
+      
+      
+        <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      
+      <meta name="generator" content="mkdocs-0.16.3, mkdocs-material-1.8.1">
+    
+    
+      
+        <title>Alexa Emulator & Node.js - Bespoken Docs</title>
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr-1df76c4e58.js"></script>
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application-bfecc7305d.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-02c2a4388f.palette.css">
+      
+    
+    
+      
+        
+        
+        
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+      <link rel="stylesheet" href="../../assets/css/style.css">
+    
+    
+  </head>
+  
+  
+  
+  
+    <body data-md-color-primary="teal" data-md-color-accent="deep-orange">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <a href="../.." title="Bespoken Docs" class="md-icon md-icon--home md-header-nav__button">
+          </a>
+        
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <span class="md-flex__ellipsis md-header-nav__title">
+          
+            
+              
+                <span class="md-header-nav__parent">
+                  Tutorials - Alexa Skills
+                </span>
+              
+            
+            Alexa Emulator & Node.js
+          
+        </span>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
+  <div class="md-search__inner">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" required placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query">
+      <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset">close</button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result" data-md-lang-search="" data-md-lang-tokenizer="[\s\-]+">
+          <div class="md-search-result__meta" data-md-lang-result-none="No matching documents" data-md-lang-result-one="1 matching document" data-md-lang-result-other="# matching documents">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/bespoken/bst" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    
+      <i class="md-icon md-icon--home md-nav__button"></i>
+    
+    Bespoken Docs
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/bespoken/bst" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../getting_started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../alexa_skills_kit_configuration/" title="Alexa Skill Configuration" class="md-nav__link">
+      Alexa Skill Configuration
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Commands
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Commands
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../commands/deploy/" title="bst deploy" class="md-nav__link">
+      bst deploy
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../commands/intend/" title="bst intend" class="md-nav__link">
+      bst intend
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../commands/proxy/" title="bst proxy" class="md-nav__link">
+      bst proxy
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../commands/speak/" title="bst speak" class="md-nav__link">
+      bst speak
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../commands/launch/" title="bst launch" class="md-nav__link">
+      bst launch
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../api_nav/" title="API Reference" class="md-nav__link">
+      API Reference
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
+    
+    <label class="md-nav__link" for="nav-6">
+      Tutorials - Alexa Skills
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Tutorials - Alexa Skills
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial_lambda_nodejs/" title="Node.js Lambda" class="md-nav__link">
+      Node.js Lambda
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial_local_server_java/" title="Local Java Server" class="md-nav__link">
+      Local Java Server
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial_flask_ask_python/" title="Python & Flask-Ask" class="md-nav__link">
+      Python & Flask-Ask
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Alexa Emulator & Node.js
+      </label>
+    
+    <a href="./" title="Alexa Emulator & Node.js" class="md-nav__link md-nav__link--active">
+      Alexa Emulator & Node.js
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tutorial-prerequisites" title="Tutorial Prerequisites" class="md-nav__link">
+    Tutorial Prerequisites
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-structure" title="Test Structure" class="md-nav__link">
+    Test Structure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-the-bst-module" title="Adding the bst module" class="md-nav__link">
+    Adding the bst module
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-and-teardown" title="Setup and Teardown" class="md-nav__link">
+    Setup and Teardown
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#first-simple-test" title="First Simple Test" class="md-nav__link">
+    First Simple Test
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-more-complex-test" title="A More Complex Test" class="md-nav__link">
+    A More Complex Test
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#going-even-further" title="Going Even Further" class="md-nav__link">
+    Going Even Further
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parting-words" title="Parting Words" class="md-nav__link">
+    Parting Words
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Tutorials - Google Actions
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        Tutorials - Google Actions
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial_cloud_function/" title="With Cloud Functions" class="md-nav__link">
+      With Cloud Functions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial_configuring_api_ai/" title="With API.AI" class="md-nav__link">
+      With API.AI
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      Tutorials - AWS Lambdas
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        Tutorials - AWS Lambdas
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial_lambda_local/" title="Running Lambdas Locally" class="md-nav__link">
+      Running Lambdas Locally
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial_lambda_debugger/" title="Debugging Lambdas Locally" class="md-nav__link">
+      Debugging Lambdas Locally
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial_lambda_deploy/" title="Deploying Lambdas" class="md-nav__link">
+      Deploying Lambdas
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tutorial-prerequisites" title="Tutorial Prerequisites" class="md-nav__link">
+    Tutorial Prerequisites
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-structure" title="Test Structure" class="md-nav__link">
+    Test Structure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-the-bst-module" title="Adding the bst module" class="md-nav__link">
+    Adding the bst module
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-and-teardown" title="Setup and Teardown" class="md-nav__link">
+    Setup and Teardown
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#first-simple-test" title="First Simple Test" class="md-nav__link">
+    First Simple Test
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-more-complex-test" title="A More Complex Test" class="md-nav__link">
+    A More Complex Test
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#going-even-further" title="Going Even Further" class="md-nav__link">
+    Going Even Further
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parting-words" title="Parting Words" class="md-nav__link">
+    Parting Words
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/bespoken/bst/edit/master/docs/tutorials/tutorial_bst_emulator_nodejs.md" title="Edit this page" class="md-icon md-content__icon">edit</a>
+                
+                
+                  <h1>Alexa Emulator & Node.js</h1>
+                
+                <p>This tutorial shows you how to get started using our BST Alexa emulator with Node.js and Javascript.</p>
+<p>The purpose of the emulator is to enable unit- and functional-testing of Alexa Skills, 
+allowing one to:</p>
+<ul>
+<li>Emulate the complex behavior of the Alexa service, without an Alexa device or any manual interaction</li>
+<li>Ensure ongoing skill quality by embedding tests in Continuous Integration/Deployment processes</li>
+</ul>
+<p><em>And please note - though this example is written in Javascript, the emulator can be used to test non-Javascript-based skills!</em></p>
+<p>Additionally, though this example focuses on the AudioPlayer interface, 
+the BSTAlexa emulator can be used for testing regular Alexa skills as well.</p>
+<h2 id="tutorial-prerequisites">Tutorial Prerequisites</h2>
+<ul>
+<li>Mocha Test Framework<ul>
+<li>https://mochajs.org/#getting-started</li>
+<li><code>$ npm install mocha --save-dev</code></li>
+</ul>
+</li>
+<li>A Node.js, Lambda-based Alexa skill <ul>
+<li>If you do not have one and want to follow along at home, <a href="https://github.com/bespoken/streamer">try ours here</a>.</li>
+<li>Derived from excellent streaming skill example provided by Amazon.</li>
+<li>The test used in this tutorial is <a href="https://github.com/bespoken/streamer/blob/master/test/streamerTest.js">found here</a>.</li>
+</ul>
+</li>
+<li>Bespoken tools added to your project's package.json<ul>
+<li><code>$ npm install bespoken-tools --save-dev</code></li>
+<li>For this example, we make it a "dev" dependency as we will be using it only for testing.</li>
+</ul>
+</li>
+</ul>
+<h2 id="test-structure">Test Structure</h2>
+<p>We are using Mocha for tests. We breakdown our tests into three parts:</p>
+<ul>
+<li>beforeEach - Creates a local Lambda server and initializes the emulator</li>
+<li>tests - Performs the actual tests by issuing intents and emulating AudioPlayer behavior</li>
+<li>afterEach - Tears down the local Lambda server and shuts down the emulator</li>
+</ul>
+<p>These are standard testing considerations, <em>though we emphasize the importance of stopping the Lambda server.</em>
+If this is not done, it will continue listening on the assigned port, potentially causing conflicts and errors.</p>
+<h2 id="adding-the-bst-module">Adding the bst module</h2>
+<p>At the top of your test, include:</p>
+<pre><code>var bst = require('bespoken-tools');
+</code></pre>
+
+<h2 id="setup-and-teardown">Setup and Teardown</h2>
+<pre><code>var server = null;
+var alexa = null;
+
+beforeEach(function (done) {
+    server = new bst.LambdaServer('./index.js', 10000, true);
+    alexa = new bst.BSTAlexa('http://localhost:10000',
+                             '../speechAssets/IntentSchema.json',
+                             '../speechAssets/Utterances.txt');
+    server.start(function() {
+        alexa.start(function (error) {
+            if (error !== undefined) {
+                console.error(&quot;Error: &quot; + error);
+            } else {
+                done();
+            }
+        });
+    });
+});
+
+afterEach(function(done) {
+    alexa.stop(function () {
+        server.stop(function () {
+            done();
+        });
+    });
+});
+</code></pre>
+
+<p>The beforeEach block initializes the <a href="http://docs.bespoken.tools/en/latest/api/classes/lambdaserver.html">LambdaServer</a> 
+and the <a href="http://docs.bespoken.tools/en/latest/api/classes/bstalexa.html">BSTAlexa emulator</a>.</p>
+<p>The first parameter to the LambdaServer tells it the location of the Lambda file to be run.
+It automatically wraps the Lambda in a service, and exposes it on the port supplied in the second argument.</p>
+<p>The last parameter indicates it should be in verbose mode - this causes requests and responses from the skill to be printed to the console.</p>
+<p>The <a href="http://docs.bespoken.tools/en/latest/api/classes/bstalexa.html#start">BSTAlexa start call</a> takes the URL of the Lambda server as its first parameter (it begins listening).<br />
+<em>Note that if you are not using Lambdas but a "Plain Old HTTP Service" you can skip the server start call and just point it at a server here.</em></p>
+<p>Additionally, it takes the location of the Intent Schema and Utterances in the second and third parameters. 
+These are not required and will default to './speechAssets/IntentSchema.json' and './speechAssets/SampleUtterances.txt' respectively.</p>
+<p>The afterEach block ensures the LambdaServer and BSTAlexa emulator are shutdown correctly.</p>
+<h2 id="first-simple-test">First Simple Test</h2>
+<pre><code>it('Launches and then plays first', function (done) {
+    // Launch the skill via sending it a LaunchRequest
+    alexa.launched(function (error, payload) {
+        // Check that the introduction is play as outputSpeech
+        assert.equal(payload.response.outputSpeech.ssml, '&lt;speak&gt; &lt;audio src=&quot;https://s3.amazonaws.com/bespoken/streaming/bespokenspodcast-INTRODUCTION.mp3&quot; /&gt;You can say play, scan titles, or about the podcast &lt;/speak&gt;');
+
+        // Emulate the user saying 'Play'
+        alexa.spoken('Play', function (error, payload) {
+            // Ensure the correct directive and audioItem is returned
+            assert.equal(payload.response.directives[0].type, 'AudioPlayer.Play');
+            assert.equal(payload.response.directives[0].audioItem.stream.token, '0');
+            assert.equal(payload.response.directives[0].audioItem.stream.url, 'https://traffic.libsyn.com/bespoken/TIP103.mp3?dest-id=432208');
+            done();
+        });
+    });
+});
+</code></pre>
+
+<p>This test runs through some simple behavior:</p>
+<ul>
+<li>It emulates the Skill being launched</li>
+<li>It confirms the Skill returns the correct outputSpeech after being launched</li>
+<li>It emulates the user saying 'Play'</li>
+<li>It confirms the correct directive and AudioItem is returned for the 'Play' intent</li>
+</ul>
+<p>The goal is to test until we feel confident in the behavior of our skill, and that it is correctly handling the interaction with the Alexa Service.</p>
+<p>It is a straightforward exercise to add more property checks on the payload to further confirm behavior.</p>
+<h2 id="a-more-complex-test">A More Complex Test</h2>
+<pre><code>it('Plays To Completion', function (done) {
+    alexa.spoken('Play', function (error, payload) {
+        // Emulates the track being played 'NearlyFinished'
+        //  Alexa sends this event at some point during track playback
+        // Our skill uses the opportunity to queue up the next track to play
+        alexa.playbackNearlyFinished(function (error, payload) {
+            assert.equal(payload.response.directives[0].type, 'AudioPlayer.Play');
+            assert.equal(payload.response.directives[0].playBehavior, 'ENQUEUE');
+            assert.equal(payload.response.directives[0].audioItem.stream.url, 'https://traffic.libsyn.com/bespoken/TIP104.mp3?dest-id=432208');
+        });
+
+        // Emulates the track playing to completion
+        // The callback is invoked after the skill responds to the PlaybackFinished request
+        alexa.playbackFinished(function (error, payload) {
+            // Confirm there are no directives in the reply to the PlaybackFinished request
+            // They came on the PlaybackNearlyFinished call
+            assert(!payload.response.directives);
+
+            // Check that playback started on the next track
+            alexa.once('AudioPlayer.PlaybackStarted', function(audioItem) {
+                assert.equal(audioItem.stream.token, '1');
+                assert.equal(audioItem.stream.url, 'https://traffic.libsyn.com/bespoken/TIP104.mp3?dest-id=432208');
+                done();
+            });
+        });
+    });
+});
+</code></pre>
+
+<p>This test uses the <a href="http://docs.bespoken.tools/en/latest/api/classes/bstalexa.html#playbackfinished">BSTAlexa#playbackFinished() call</a> 
+to emulate the audio playing to completion on the device.  </p>
+<p>The Alexa service first calls <a href="http://docs.bespoken.tools/en/latest/api/classes/bstalexa.html#playbacknearlyfinished">BSTAlexa#playbackNearlyFinished()</a>. 
+This request is triggered by the Alexa service when a track is almost done playing, and is frequently used by skills to enqueue the next AudioItem in the queue for playback on the device.</p>
+<p>The Alexa service then sends a 'AudioPlayer.PlaybackFinished' request to the skill, which we expect to then trigger the playback of the next track in the queue.  </p>
+<p>We also use the <a href="http://docs.bespoken.tools/en/latest/api/classes/bstalexa.html#once">BSTAlexa#once() listener</a> - this allows us to listen for specific events occurring within the Alexa emulator. 
+In this case, we want to confirm that the next track was queued correctly and has begun playing.</p>
+<p>We use the once call to indicate we only want to receive this event the first time it happens. This is useful for watching on events like PlaybackStarted, which are likely to happen many times in the course of an interaction.</p>
+<p>The events that can be listened for are listed <a href="../../api/classes/bstalexaevents.html">here</a>.</p>
+<h2 id="going-even-further">Going Even Further</h2>
+<p>Our sample project, <a href="https://github.com/bespoken/streamer/">Bespoken Streamer</a>, provides even more examples.</p>
+<p>The <a href="https://github.com/bespoken/streamer/blob/master/test/streamerTest.js">tests for it</a> are meant to exercise all the different actions
+and states that the skill allows for. </p>
+<p>It gets quite involved, and the complexity really illustrates the need for such a tool: without it, manually working through each of these scenarios initially is daunting.</p>
+<p>And ensuring all the scenarios still work when changes are made to the code is even more challenging. </p>
+<p>It's essential to have a unit-test tool such as this in one's toolbelt to avoid being plagued with quality issues.</p>
+<h2 id="parting-words">Parting Words</h2>
+<p>We are looking to continuously enhance the emulator. Right now, it supports:</p>
+<ul>
+<li>Standard Custom Skill behavior</li>
+<li>AudioPlayer behavior</li>
+</ul>
+<p>It does <strong>not</strong> yet support:</p>
+<ul>
+<li>Error conditions (<a href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/custom-audioplayer-interface-reference#systemexceptionencountered-request">Alexa requests based on improper Skill responses</a>)</li>
+<li><a href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/custom-playbackcontroller-interface-reference">The PlaybackController interface</a></li>
+</ul>
+<p>Please keep a lookout for support for both coming soon!</p>
+<p>Additionally, <a href="https://gitter.im/bespoken/bst">chat with us on Gitter</a> with any comments or questions.</p>
+                
+                  
+                
+              
+              
+                
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../tutorial_flask_ask_python/" title="Python & Flask-Ask" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Python & Flask-Ask
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../tutorial_cloud_function/" title="With Cloud Functions" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                With Cloud Functions
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="http://www.mkdocs.org" title="MkDocs">MkDocs</a>
+        and
+        <a href="http://squidfunk.github.io/mkdocs-material/" title="Material for MkDocs">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application-6940329b9f.js"></script>
+      
+      
+      <script>app.initialize({url:{base:"../.."}})</script>
+      
+        <script src="../../api/assets/js/main.js"></script>
+      
+        <script src="../../api/assets/js/search.js"></script>
+      
+    
+    
+      
+    
+  </body>
+</html>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    
+    <url>
+     <loc>/</loc>
+     <lastmod>2017-08-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/getting_started/</loc>
+     <lastmod>2017-08-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/alexa_skills_kit_configuration/</loc>
+     <lastmod>2017-08-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+        
+    <url>
+     <loc>/commands/deploy/</loc>
+     <lastmod>2017-08-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/commands/intend/</loc>
+     <lastmod>2017-08-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/commands/proxy/</loc>
+     <lastmod>2017-08-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/commands/speak/</loc>
+     <lastmod>2017-08-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/commands/launch/</loc>
+     <lastmod>2017-08-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+    <url>
+     <loc>/api_nav/</loc>
+     <lastmod>2017-08-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+        
+    <url>
+     <loc>/tutorials/tutorial_lambda_nodejs/</loc>
+     <lastmod>2017-08-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/tutorials/tutorial_local_server_java/</loc>
+     <lastmod>2017-08-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/tutorials/tutorial_flask_ask_python/</loc>
+     <lastmod>2017-08-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/tutorials/tutorial_bst_emulator_nodejs/</loc>
+     <lastmod>2017-08-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/tutorials/tutorial_cloud_function/</loc>
+     <lastmod>2017-08-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/tutorials/tutorial_configuring_api_ai/</loc>
+     <lastmod>2017-08-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/tutorials/tutorial_lambda_local/</loc>
+     <lastmod>2017-08-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/tutorials/tutorial_lambda_debugger/</loc>
+     <lastmod>2017-08-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/tutorials/tutorial_lambda_deploy/</loc>
+     <lastmod>2017-08-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+</urlset>

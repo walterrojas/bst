@@ -1,0 +1,1276 @@
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Tutorial - Deploying AWS Lambdas With Bespoken">
+      
+      
+      
+      
+        <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      
+      <meta name="generator" content="mkdocs-0.16.3, mkdocs-material-1.8.1">
+    
+    
+      
+        <title>Deploying Lambdas - Bespoken Docs</title>
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr-1df76c4e58.js"></script>
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application-bfecc7305d.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-02c2a4388f.palette.css">
+      
+    
+    
+      
+        
+        
+        
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+      <link rel="stylesheet" href="../../assets/css/style.css">
+    
+    
+  </head>
+  
+  
+  
+  
+    <body data-md-color-primary="teal" data-md-color-accent="deep-orange">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <a href="../.." title="Bespoken Docs" class="md-icon md-icon--home md-header-nav__button">
+          </a>
+        
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <span class="md-flex__ellipsis md-header-nav__title">
+          
+            
+              
+                <span class="md-header-nav__parent">
+                  Tutorials - AWS Lambdas
+                </span>
+              
+            
+            Deploying Lambdas
+          
+        </span>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
+  <div class="md-search__inner">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" required placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query">
+      <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset">close</button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result" data-md-lang-search="" data-md-lang-tokenizer="[\s\-]+">
+          <div class="md-search-result__meta" data-md-lang-result-none="No matching documents" data-md-lang-result-one="1 matching document" data-md-lang-result-other="# matching documents">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/bespoken/bst" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    
+      <i class="md-icon md-icon--home md-nav__button"></i>
+    
+    Bespoken Docs
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/bespoken/bst" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../getting_started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../alexa_skills_kit_configuration/" title="Alexa Skill Configuration" class="md-nav__link">
+      Alexa Skill Configuration
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Commands
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Commands
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../commands/deploy/" title="bst deploy" class="md-nav__link">
+      bst deploy
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../commands/intend/" title="bst intend" class="md-nav__link">
+      bst intend
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../commands/proxy/" title="bst proxy" class="md-nav__link">
+      bst proxy
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../commands/speak/" title="bst speak" class="md-nav__link">
+      bst speak
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../commands/launch/" title="bst launch" class="md-nav__link">
+      bst launch
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../api_nav/" title="API Reference" class="md-nav__link">
+      API Reference
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Tutorials - Alexa Skills
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Tutorials - Alexa Skills
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial_lambda_nodejs/" title="Node.js Lambda" class="md-nav__link">
+      Node.js Lambda
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial_local_server_java/" title="Local Java Server" class="md-nav__link">
+      Local Java Server
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial_flask_ask_python/" title="Python & Flask-Ask" class="md-nav__link">
+      Python & Flask-Ask
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial_bst_emulator_nodejs/" title="Alexa Emulator & Node.js" class="md-nav__link">
+      Alexa Emulator & Node.js
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Tutorials - Google Actions
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        Tutorials - Google Actions
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial_cloud_function/" title="With Cloud Functions" class="md-nav__link">
+      With Cloud Functions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial_configuring_api_ai/" title="With API.AI" class="md-nav__link">
+      With API.AI
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8" checked>
+    
+    <label class="md-nav__link" for="nav-8">
+      Tutorials - AWS Lambdas
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        Tutorials - AWS Lambdas
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial_lambda_local/" title="Running Lambdas Locally" class="md-nav__link">
+      Running Lambdas Locally
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial_lambda_debugger/" title="Debugging Lambdas Locally" class="md-nav__link">
+      Debugging Lambdas Locally
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Deploying Lambdas
+      </label>
+    
+    <a href="./" title="Deploying Lambdas" class="md-nav__link md-nav__link--active">
+      Deploying Lambdas
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#use-case" title="Use case" class="md-nav__link">
+    Use case
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" title="Prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-bst" title="Install bst" class="md-nav__link">
+    Install bst
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-privileges" title="AWS Privileges" class="md-nav__link">
+    AWS Privileges
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zip" title="Zip" class="md-nav__link">
+    Zip
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-the-lambda-skill" title="Creating The Lambda Skill" class="md-nav__link">
+    Creating The Lambda Skill
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kick-the-tires-with-bst" title="Kick the tires with BST" class="md-nav__link">
+    Kick the tires with BST
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-the-lambda" title="Install the Lambda" class="md-nav__link">
+    Install the Lambda
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#customization" title="Customization" class="md-nav__link">
+    Customization
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#config-file" title="Config file" class="md-nav__link">
+    Config file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lambda-role" title="Lambda role" class="md-nav__link">
+    Lambda role
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-resources-within-your-vpc" title="Local resources within your VPC" class="md-nav__link">
+    Local resources within your VPC
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modify-the-skill-code" title="Modify the skill code" class="md-nav__link">
+    Modify the skill code
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-vpc-subnet-and-security-group-to-you-lambda-function" title="Add VPC subnet and security group to you Lambda function" class="md-nav__link">
+    Add VPC subnet and security group to you Lambda function
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#we-need-to-update-the-policy-on-the-lambda-execution-role" title="We need to update the policy on the Lambda execution role" class="md-nav__link">
+    We need to update the policy on the Lambda execution role
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#we-also-need-the-subnet-id-of-our-servers-ec2-instance-and-a-security-group-id" title="We also need the subnet id of our server's EC2 instance and a security group id" class="md-nav__link">
+    We also need the subnet id of our server's EC2 instance and a security group id
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-the-lambda" title="Update the Lambda" class="md-nav__link">
+    Update the Lambda
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#use-case" title="Use case" class="md-nav__link">
+    Use case
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" title="Prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-bst" title="Install bst" class="md-nav__link">
+    Install bst
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-privileges" title="AWS Privileges" class="md-nav__link">
+    AWS Privileges
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zip" title="Zip" class="md-nav__link">
+    Zip
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-the-lambda-skill" title="Creating The Lambda Skill" class="md-nav__link">
+    Creating The Lambda Skill
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kick-the-tires-with-bst" title="Kick the tires with BST" class="md-nav__link">
+    Kick the tires with BST
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-the-lambda" title="Install the Lambda" class="md-nav__link">
+    Install the Lambda
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#customization" title="Customization" class="md-nav__link">
+    Customization
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#config-file" title="Config file" class="md-nav__link">
+    Config file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lambda-role" title="Lambda role" class="md-nav__link">
+    Lambda role
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-resources-within-your-vpc" title="Local resources within your VPC" class="md-nav__link">
+    Local resources within your VPC
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modify-the-skill-code" title="Modify the skill code" class="md-nav__link">
+    Modify the skill code
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-vpc-subnet-and-security-group-to-you-lambda-function" title="Add VPC subnet and security group to you Lambda function" class="md-nav__link">
+    Add VPC subnet and security group to you Lambda function
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#we-need-to-update-the-policy-on-the-lambda-execution-role" title="We need to update the policy on the Lambda execution role" class="md-nav__link">
+    We need to update the policy on the Lambda execution role
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#we-also-need-the-subnet-id-of-our-servers-ec2-instance-and-a-security-group-id" title="We also need the subnet id of our server's EC2 instance and a security group id" class="md-nav__link">
+    We also need the subnet id of our server's EC2 instance and a security group id
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-the-lambda" title="Update the Lambda" class="md-nav__link">
+    Update the Lambda
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/bespoken/bst/edit/master/docs/tutorials/tutorial_lambda_deploy.md" title="Edit this page" class="md-icon md-content__icon">edit</a>
+                
+                
+                  <h1>Deploying Lambdas</h1>
+                
+                <p>This tutorial shows you how to use the Bespoken tools to test and deploy your Node.js AWS Lambdas.
+It will also show you how to install a Lambda that will access resources inside your private VPC.</p>
+<h2 id="use-case">Use case</h2>
+<p>We would like to create an Alexa skill that tells random quotes from famous people.
+I'm sure nobody thought about this before...</p>
+<p>We will try two versions. A simple skill that chooses a random quote from a static array. 
+To make it more interesting, later we will pull the quotes from a local AWS resource, a REST service with Mongo 
+we installed on an EC2 instance. </p>
+<h2 id="prerequisites">Prerequisites</h2>
+<h3 id="install-bst">Install bst</h3>
+<pre><code class="bsh">$ npm install bespoken-tools -g
+</code></pre>
+
+<p><a href="../../getting_started/">Full Installation Instructions</a></p>
+<h3 id="aws-privileges">AWS Privileges</h3>
+<p>Make sure you have the privileges to manage Lambdas on AWS. Ok, it's obvious, I know...</p>
+<p>You will need AWS access keys - the secret access key and the access key id.
+If you have the AWS command line tools installed, you probably already have these keys in the ~/.aws/credentials file.
+Installing the AWS CLI is not required, but it is very useful. </p>
+<p>Alternatively you can set these two shell environment variables with the respective values.</p>
+<pre><code class="shell">$ export AWS_SECRET_ACCESS_KEY=...
+$ export AWS_ACCESS_KEY_ID=...
+</code></pre>
+
+<p><em>Note</em>
+It's not the scope of this tutorial to pontificate about security, but please don't use your root AWS credentials!</p>
+<h3 id="zip">Zip</h3>
+<p>You may need to install <code>zip</code> depending on your operating system. It's needed for packaging the Lambdas.</p>
+<h2 id="creating-the-lambda-skill">Creating The Lambda Skill</h2>
+<p>The sources for this demo are <a href="https://github.com/bespoken/deploy-vpc-demo">here</a>. Feel free to clone the repo.</p>
+<p>There are two folders. The <code>quote-server-mongo</code> is a simple express REST service with Mongo. 
+We will use that for the backend later. If you want to try the demo end-to-end, then copy the code to your
+EC2 instance. Simple instructions to run the service are in the README.md file.</p>
+<p>The actual skill Lambda is in the <code>quote-skill</code> folder. Navigate to the folder and run</p>
+<pre><code class="shell">npm install
+</code></pre>
+
+<p><strong>Important</strong>
+Your project have to follow the node.js conventions. That is you need a package.json in top the level folder.</p>
+<p>Now let's take a peek into index.js. That is our Lambda. Very simple skill, 
+wired to fetch the quotes from a static array by default.</p>
+<p>We used Matt Kruse's <a href="https://github.com/matt-kruse/alexa-app">excellent SDK</a>.</p>
+<pre><code class="javascript">var Alexa = require('alexa-app');
+var skill = new Alexa.app('randomquote');
+
+var dataProvider = require('./dataProviderStatic');
+
+skill.launch(function(request, response) {
+    response
+        .say(&quot;&lt;speak&gt;Greetings! You can say random quote to hear a quote.&lt;/speak&gt;&quot;)
+        .reprompt(&quot;&lt;speak&gt;No kidding! Just say it!&lt;/speak&gt;&quot;)
+        .shouldEndSession(false);
+});
+
+skill.intent('RandomQuote',
+    {
+        &quot;utterances&quot;: [
+            &quot;Tell me a Quote&quot;,
+            &quot;Random Quote&quot;
+        ]
+    },
+    function(request, response) {
+        dataProvider.findItem(function(quote) {
+            if (quote) {
+                response
+                    .say(&quot;&lt;speak&gt; &quot; + quote.author + &quot; said once &quot; + quote.text + &quot; &lt;/speak&gt;&quot;)
+                    .reprompt(&quot;&lt;speak&gt;You can say random quote to hear a quote.&lt;/speak&gt;&quot;)
+                    .shouldEndSession(false).send();
+            } else {
+                response
+                    .say(&quot;&lt;speak&gt;We have a database connection error. Sorry!&lt;/speak&gt;&quot;)
+                    .shouldEndSession(true).send();
+            }
+        });
+
+        // Async (!)
+        return false;
+    }
+);
+
+// Expose the handler
+exports.handler = skill.lambda();
+</code></pre>
+
+<h2 id="kick-the-tires-with-bst">Kick the tires with BST</h2>
+<p>Start the BST proxy to expose the Lambda for the BST tools.</p>
+<pre><code class="shell">$ cd quote-skill/
+$ bst proxy lambda index.js 
+BST: v0.9.13  Node: v6.3.0
+
+Your URL for Alexa Skill configuration:
+https://proxy.bespoken.tools?node-id=bdd4aad4-2339-4e85-aa33-2bbcd2e03168
+
+INFO  2016-11-04T01:32:01.139Z LambdaServer started on port: 10000
+INFO  2016-11-04T01:32:01.250Z Connected - proxy.bespoken.tools:5000
+</code></pre>
+
+<p>Now let's "tell" something to our skill. From another shell session run the BST <code>speak</code> command!</p>
+<p>"random qoute" is one of the sample utterances. The command prints out the matching request (intent) and the response. 
+No need to go to the Amazon Alexa UI to do basic tests. </p>
+<p>You can read more about the <code>bst speak</code> command <a href="http://docs.bespoken.tools/en/latest/commands/speak/">here</a></p>
+<pre><code class="shell">$ bst speak random quote
+BST: v0.9.13  Node: v6.3.0
+
+Intent: RandomQuote Session: null
+INFO  2016-11-04T01:35:10.096Z CALLING: IntentRequest
+Spoke: random quote
+
+Request:
+{
+    &quot;request&quot;: {
+        &quot;type&quot;: &quot;IntentRequest&quot;,
+        &quot;locale&quot;: &quot;en-US&quot;,
+        &quot;requestId&quot;: &quot;amzn1.echo-api.request.5c3e96b6-0de7-4b7c-9537-95bc7b17b03a&quot;,
+        &quot;timestamp&quot;: &quot;2016-11-04T01:35:10Z&quot;,
+        &quot;intent&quot;: {
+            &quot;name&quot;: &quot;RandomQuote&quot;
+        }
+    },
+    &quot;context&quot;: {
+        &quot;System&quot;: {
+            &quot;application&quot;: {
+                &quot;applicationId&quot;: &quot;amzn1.echo-sdk-ams.app.1a5e4446-234c-4dcf-84fb-05198a631305&quot;
+            },
+            &quot;device&quot;: {
+                &quot;supportedInterfaces&quot;: {
+                    &quot;AudioPlayer&quot;: {}
+                }
+            },
+            &quot;user&quot;: {
+                &quot;userId&quot;: &quot;amzn1.ask.account.4f906b29-d5e5-4c42-adfc-d6c8d2fc6a9c&quot;
+            }
+        },
+        &quot;AudioPlayer&quot;: {
+            &quot;playerActivity&quot;: &quot;IDLE&quot;
+        }
+    },
+    &quot;version&quot;: &quot;1.0&quot;,
+    &quot;session&quot;: {
+        &quot;sessionId&quot;: &quot;SessionID.5e17be6c-be98-48e0-aa35-038e94d3e13e&quot;,
+        &quot;application&quot;: {
+            &quot;applicationId&quot;: &quot;amzn1.echo-sdk-ams.app.1a5e4446-234c-4dcf-84fb-05198a631305&quot;
+        },
+        &quot;user&quot;: {
+            &quot;userId&quot;: &quot;amzn1.ask.account.4f906b29-d5e5-4c42-adfc-d6c8d2fc6a9c&quot;
+        },
+        &quot;new&quot;: true,
+        &quot;attributes&quot;: {}
+    }
+}
+
+Response:
+{
+    &quot;version&quot;: &quot;1.0&quot;,
+    &quot;sessionAttributes&quot;: {},
+    &quot;response&quot;: {
+        &quot;shouldEndSession&quot;: false,
+        &quot;outputSpeech&quot;: {
+            &quot;type&quot;: &quot;SSML&quot;,
+            &quot;ssml&quot;: &quot;&lt;speak&gt;Yogi Berra said once I never said half the things I said.&lt;/speak&gt;&quot;
+        },
+        &quot;reprompt&quot;: {
+            &quot;outputSpeech&quot;: {
+                &quot;type&quot;: &quot;SSML&quot;,
+                &quot;ssml&quot;: &quot;&lt;speak&gt;You can say random quote to hear a quote.&lt;/speak&gt;&quot;
+            }
+        }
+    }
+}
+</code></pre>
+
+<p>If something isn't right, you can debug the skill locally with BST. 
+You can step through your code using your favorite IDE. <a href="http://docs.bespoken.tools/en/latest/tutorials/tutorial_lambda_debugger">Follow this tutorial</a> 
+to learn how easy that is.</p>
+<h2 id="install-the-lambda">Install the Lambda</h2>
+<p>Everything meant to be easy with BST. The installation is no exception. BST has a "one line deployer" feature.</p>
+<p>All you have to do is running the following command. The last parameter is the path to the Lambda project.
+It could be relative or absolute path.</p>
+<pre><code class="shell">$ bst deploy lambda . 
+INFO  2016-11-04T00:22:31.654Z No configuration. Creating one: /Users/opendog/.bst/config
+BST: v0.9.13  Node: v6.3.0
+
+We named your lambda function quote-skill (same as the project folder)
+We created a AWS role for your lambda and called it lambda-bst-execution. You are welcome!
+Note that this lambda execution role is very basic. You may have to customize it on the AWS console!
+Waiting for AWS to propagate the changes
+Waiting for AWS to propagate the changes
+Zip file(s) done uploading.
+Enter this ARN(s) on the Configuration tab of your skill:
+
+    arn:aws:lambda:us-east-1:6376:function:quote-skill
+
+$ 
+</code></pre>
+
+<p>What happened? </p>
+<ul>
+<li>The tool created (or updated if it existed) the BST configuration file in <code>~/.bst</code> where you can tweak the install parameters later</li>
+<li>Created a role called <code>lambda-bst-execution</code> for your Lambda with an associated basic policy</li>
+<li>Packaged and uploaded your Lambda to AWS</li>
+</ul>
+<p>You can ask BST to give a specific name to the function with the <code>--lambdaName</code> option.
+Otherwise the tool uses the folder name. </p>
+<p>At the end BST handed you over the <code>arn</code> to setup your Lambda skill on the Alexa setup UI.</p>
+<p>That was it! You can now modify your code and call the <code>bst deploy</code> command again the same way. BST will update your Lambda.</p>
+<h2 id="customization">Customization</h2>
+<h3 id="config-file">Config file</h3>
+<p>Let's take a look at the BST config file I mentioned before. It looks like this:</p>
+<pre><code class="json">{
+    &quot;nodeID&quot;: &quot;bdd4aad4-2339-4e85-aa33-2bbcd2e03168&quot;,
+    &quot;lambdaDeploy&quot;: {
+        &quot;runtime&quot;: &quot;nodejs4.3&quot;,
+        &quot;role&quot;: &quot;lambda-bst-execution&quot;,
+        &quot;handler&quot;: &quot;index.handler&quot;,
+        &quot;description&quot;: &quot;My BST lambda skill&quot;,
+        &quot;timeout&quot;: 3,
+        &quot;memorySize&quot;: 128,
+        &quot;vpcSubnets&quot;: &quot;&quot;,
+        &quot;vpcSecurityGroups&quot;: &quot;&quot;,
+        &quot;excludeGlobs&quot;: &quot;event.json&quot;
+    }
+}
+</code></pre>
+
+<p>You can tailor these parameters as you wish. They are similar to the AWS API parameters except the <code>excludeGlobs</code>.
+The <code>excludeGlobs</code> is a comma delimited list of files and folders that you can exclude from the packaged lambda.
+Things you don't need at runtime.</p>
+<p>The <code>nodeID</code> is used by the BST proxy to expose your Lambda or local http endpoint on the public internet.</p>
+<h3 id="lambda-role">Lambda role</h3>
+<p>The <code>lambda-bst-execution</code> role only has the basics. Access rights to logging, S3 (put, get) and Dynamo (persistent storage).
+If you need more access rights, you will have to modify it on the AWS console.</p>
+<p>This is the default policy:</p>
+<pre><code class="json">{
+    &quot;Version&quot;: &quot;2012-10-17&quot;,
+    &quot;Statement&quot;: [
+        {
+            &quot;Sid&quot;: &quot;&quot;,
+            &quot;Action&quot;: [
+                &quot;dynamodb:DeleteItem&quot;,
+                &quot;dynamodb:GetItem&quot;,
+                &quot;dynamodb:PutItem&quot;,
+                &quot;dynamodb:Query&quot;,
+                &quot;dynamodb:Scan&quot;,
+                &quot;dynamodb:UpdateItem&quot;
+            ],
+            &quot;Effect&quot;: &quot;Allow&quot;,
+            &quot;Resource&quot;: &quot;*&quot;
+        },
+        {
+            &quot;Effect&quot;: &quot;Allow&quot;,
+            &quot;Action&quot;: [
+                &quot;logs:*&quot;
+            ],
+            &quot;Resource&quot;: &quot;arn:aws:logs:*:*:*&quot;
+        },
+        {
+            &quot;Effect&quot;: &quot;Allow&quot;,
+            &quot;Action&quot;: [
+                &quot;s3:GetObject&quot;
+            ],
+            &quot;Resource&quot;: &quot;arn:aws:s3:::'$source_bucket'/*&quot;
+        },
+        {
+            &quot;Effect&quot;: &quot;Allow&quot;,
+            &quot;Action&quot;: [
+                &quot;s3:PutObject&quot;
+            ],
+            &quot;Resource&quot;: &quot;arn:aws:s3:::'$target_bucket'/*&quot;
+        }
+    ]
+}
+</code></pre>
+
+<h2 id="local-resources-within-your-vpc">Local resources within your VPC</h2>
+<p>Lambdas should be written in a stateless manner. This means we cannot maintain a connection pool to a database.
+One solution is a REST microservice that looks up the data for you.</p>
+<p>This is what our little Express application does. I have already installed it on an EC2 instance (no kidding)
+and it's eagerly listening on port 3000.</p>
+<h3 id="modify-the-skill-code">Modify the skill code</h3>
+<p>To pull the quotes from our REST service just change the data provider import line in the skill (<code>index.js</code>)
+from </p>
+<pre><code class="javascript">var dataProvider = require('./dataProviderStatic');
+</code></pre>
+
+<p>to</p>
+<pre><code class="javascript">var dataProvider = require('./dataProvider');
+</code></pre>
+
+<p>Also change the REST server IP address and port in the data provider (<code>dataProvider.js</code>).</p>
+<h3 id="add-vpc-subnet-and-security-group-to-you-lambda-function">Add VPC subnet and security group to you Lambda function</h3>
+<p>Before our Lambda can access private VPC resources we need a few things.</p>
+<h4 id="we-need-to-update-the-policy-on-the-lambda-execution-role">We need to update the policy on the Lambda execution role</h4>
+<p>By default BST does not grant access to ENI (elastic network interface) functions. 
+Future will tell if this is a bug or a feature, but for now you have to add it manually.
+The reason is security. I'm open for a debate.</p>
+<p><strong>Important</strong>
+You need to add ENI access to the policy on the <strong>Lambda execution role</strong>, 
+not on the role of the entity that installs the Lambda!</p>
+<p>Go to the <code>IAM &gt; Roles</code> menu on the AWS console and select <code>lambda-bst-execution</code>,
+and edit the policy. It's called <code>lambda-bst-execution-access</code> by default. </p>
+<p>Add this to the JSON array and save:</p>
+<pre><code class="json">        {
+            &quot;Effect&quot;: &quot;Allow&quot;,
+            &quot;Resource&quot;: &quot;*&quot;,
+            &quot;Action&quot;: [
+                &quot;ec2:CreateNetworkInterface&quot;,
+                &quot;ec2:DeleteNetworkInterface&quot;,
+                &quot;ec2:DescribeNetworkInterfaces&quot;
+            ]
+        }
+</code></pre>
+
+<h4 id="we-also-need-the-subnet-id-of-our-servers-ec2-instance-and-a-security-group-id">We also need the subnet id of our server's EC2 instance and a security group id</h4>
+<p><strong>Important</strong>
+We need the ids not the names!</p>
+<p>The vpc subnet id is the <code>Subnet ID</code> field on the EC2 instance detail page. It starts with <code>subnet-</code></p>
+<p>To find the security group id, click on the security group on the EC2 instance detail page (on the right). 
+If you used the AWS wizard to spin up the instance, the name will be something like <code>launch-wizard-1</code>.
+You can use that group. The id starts with <code>sg-</code>. </p>
+<p>It probably already has the ssh (22) port open. Let's add our server port, the 3000.</p>
+<p><img src='../../assets/images/add-tcp-3000.png' /></p>
+<p>Add the ids to the BST config file in <code>~/.bst/config</code> like this:</p>
+<pre><code class="json">{
+    &quot;nodeID&quot;: &quot;fdd376c8-3d3e-74-41924af&quot;,
+    &quot;lambdaDeploy&quot;: {
+        &quot;runtime&quot;: &quot;nodejs4.3&quot;,
+        &quot;role&quot;: &quot;lambda-bst-execution&quot;,
+        &quot;handler&quot;: &quot;index.handler&quot;,
+        &quot;description&quot;: &quot;My BST lambda skill&quot;,
+        &quot;timeout&quot;: 3,
+        &quot;memorySize&quot;: 128,
+        &quot;vpcSubnets&quot;: &quot;subnet-e6dcb&quot;,
+        &quot;vpcSecurityGroups&quot;: &quot;sg-c66b7&quot;,
+        &quot;excludeGlobs&quot;: &quot;event.json&quot;
+    }
+}
+</code></pre>
+
+<h2 id="update-the-lambda">Update the Lambda</h2>
+<p>The Lambda function code update is easy with BST. The same command will update the Lambda. 
+From the Lambda project folder run this:</p>
+<pre><code class="shell">$ bst deploy lambda . 
+BST: v0.9.13  Node: v6.3.0
+
+We named your lambda function quote-skill (same as the project folder)
+Re-using existing BST lambda role.
+Zip file(s) done uploading.
+Enter this ARN(s) on the Configuration tab of your skill:
+
+    arn:aws:lambda:us-east-1:876:function:quote-skill
+
+$ 
+</code></pre>
+
+<p>I hope this was helpful. If you have any questions or problems with this tutorial 
+you can email me at bela@opendog.org.</p>
+                
+                  
+                
+              
+              
+                
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../tutorial_lambda_debugger/" title="Debugging Lambdas Locally" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Debugging Lambdas Locally
+              </span>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="http://www.mkdocs.org" title="MkDocs">MkDocs</a>
+        and
+        <a href="http://squidfunk.github.io/mkdocs-material/" title="Material for MkDocs">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application-6940329b9f.js"></script>
+      
+      
+      <script>app.initialize({url:{base:"../.."}})</script>
+      
+        <script src="../../api/assets/js/main.js"></script>
+      
+        <script src="../../api/assets/js/search.js"></script>
+      
+    
+    
+      
+    
+  </body>
+</html>
