@@ -6,6 +6,7 @@
   "version": "2.0.22",
   "bin": {
     "bst": "./bin/bst.js",
+    "bst-test": "./bin/bst-test.js",
     "bst-server": "./bin/bst-server.js"
   },
   "dependencies": {
